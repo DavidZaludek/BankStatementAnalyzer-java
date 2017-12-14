@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/Resources/Images" type="java-resource" />
     </content>
+    <content url="file://$MODULE_DIR$/out" />
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sqlite-jdbc-3.21.0" level="project" />
