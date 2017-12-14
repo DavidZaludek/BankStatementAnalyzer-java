@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="585.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Model.Filter.LineGraph.LineGraphViewController">
+   <children>
+      <SplitPane dividerPositions="0.7775919732441472" layoutX="200.0" layoutY="109.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <LineChart fx:id="LineChart" horizontalZeroLineVisible="false" layoutX="-7.0" layoutY="2.0" title="Line chart" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="2.0">
+                    <xAxis>
+                      <CategoryAxis endMargin="0.0" side="BOTTOM" startMargin="0.0" tickLabelGap="40.0" tickLabelRotation="-45.0" tickLength="15.0" fx:id="xAxis">
+                           <tickLabelFont>
+                              <Font name="System Font Regular" size="10.0" />
+                           </tickLabelFont></CategoryAxis>
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </AnchorPane>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="200.0" minHeight="0.0" minWidth="200.0" prefHeight="160.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="30.0" layoutY="40.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="196.0" text="From :">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Label>
+                        <DatePicker fx:id="FromDatePicker" onAction="#FromDatePickerSet">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></DatePicker>
+                        <Separator prefWidth="200.0" />
+                        <Label text="To :">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Label>
+                        <DatePicker fx:id="ToDatePicker" onAction="#ToDatePickerSet">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></DatePicker>
+                        <Separator prefWidth="200.0" />
+                        <Label text="Pick currency">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Label>
+                        <ChoiceBox fx:id="CurrencySelection" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></ChoiceBox>
+                        <Separator prefWidth="200.0" />
+                        <Label text="Granuarity : ">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Label>
+                        <Slider fx:id="GranularitySlider" majorTickUnit="1.0" max="3.0" minorTickCount="0" onDragOver="#GranularitySliderDragged" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></Slider>
+                        <Separator prefWidth="200.0" />
+                        <CheckBox fx:id="LinearRegresion" mnemonicParsing="false" onAction="#LinearRegresionOnAction" text="Linear regression">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin></CheckBox>
+                        <Separator prefWidth="200.0" />
+                        <CheckBox fx:id="IncomeDisplay" mnemonicParsing="false" onAction="#IncomeDisplayOnAction" text="Income">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox fx:id="SpendingDisplay" mnemonicParsing="false" onAction="#SpendingDisplayOnAction" text="Spending ">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox fx:id="AccountBalanceDisplay" mnemonicParsing="false" onAction="#AccountBalanceDisplayOnAction" text="Bank account balance">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

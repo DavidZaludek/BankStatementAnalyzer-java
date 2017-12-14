@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="747.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.View.FxmlFiles.Views.HomePageViewController">
+   <children>
+      <GridPane layoutX="147.0" layoutY="102.0" prefHeight="373.0" prefWidth="615.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ToolBar maxHeight="40.0" minHeight="40.0" prefHeight="40.0" GridPane.hgrow="ALWAYS">
+              <items>
+                <Button fx:id="HomePageButton" defaultButton="true" mnemonicParsing="false" onAction="#HomePageButtonOnAction" text="Home" />
+                  <Separator orientation="VERTICAL" />
+                  <Button fx:id="FilesViewButton" mnemonicParsing="false" onAction="#FilesViewButtonOnAction" text="Files" />
+                  <Button fx:id="GraphsViewButton" mnemonicParsing="false" onAction="#GraphsViewButtonOnAction" text="Graphs" />
+                  <Button fx:id="RecordsViewButton" mnemonicParsing="false" onAction="#RecordsViewButtonOnAction" text="Records" />
+
+                  <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="UserLabel" prefHeight="16.0" prefWidth="185.0" text="Logged in as *" />
+                  <Button fx:id="LogOutButton" cancelButton="true" mnemonicParsing="false" onAction="#LogOutButtonOnAction" text="Log out" />
+              </items>
+            </ToolBar>
+            <AnchorPane fx:id="subScene" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
