@@ -8,7 +8,23 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BankStatementAnalyzer.jar" size="902947" download="eager" />
+    <jar href="BankStatementAnalyzer.jar" size="1229391" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/BankStatementAnalyzer.jar" size="902947" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-beanutils-1.9.3.jar" size="246174" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-collections-3.2.2.jar" size="588337" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-lang3-3.6.jar" size="494856" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-lang3-3.7.jar" size="499634" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-math3-3.3-javadoc.jar" size="6221375" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-math3-3.3.jar" size="1952352" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/commons-text-1.1.jar" size="129145" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/json-20171018-javadoc.jar" size="155545" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/json-20171018.jar" size="61749" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/junit-jupiter-api-5.0.0-RC2.jar" size="74574" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/opencsv-4.1-javadoc.jar" size="385541" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/opencsv-4.1.jar" size="105568" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/opentest4j-1.0.0-RC1.jar" size="6591" download="eager" />
+    <jar href="bin/BankStatementAnalyzer/lib/sqlite-jdbc-3.21.0.jar" size="6672489" download="eager" />
     <jar href="lib/commons-beanutils-1.9.3.jar" size="246174" download="eager" />
     <jar href="lib/commons-collections-3.2.2.jar" size="588337" download="eager" />
     <jar href="lib/commons-lang3-3.6.jar" size="494856" download="eager" />

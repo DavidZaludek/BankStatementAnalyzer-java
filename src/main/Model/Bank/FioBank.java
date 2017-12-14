@@ -7,8 +7,10 @@ import main.Model.File;
 import main.Model.Record;
 import main.Model.User;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class FioBank extends AbstractBank {
 
 	@Override
 	public File ParseFile(User user, java.io.File rawFile) throws IOException {
-		CSVReader reader = new CSVReader(new FileReader(rawFile), ';');
+		CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(rawFile.getPath()), StandardCharsets.UTF_8), ';');
 
 		File tmpFile = new File(user.getGUID(),rawFile.getName(),LocalDate.now(),LocalDate.now(),getBankName(),new ArrayList<>());
 
