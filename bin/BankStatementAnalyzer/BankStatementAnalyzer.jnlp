@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BankStatementAnalyzer.jar" size="1229391" download="eager" />
+    <jar href="BankStatementAnalyzer.jar" size="1215560" download="eager" />
     <jar href="bin/BankStatementAnalyzer/BankStatementAnalyzer.jar" size="902947" download="eager" />
     <jar href="bin/BankStatementAnalyzer/lib/commons-beanutils-1.9.3.jar" size="246174" download="eager" />
     <jar href="bin/BankStatementAnalyzer/lib/commons-collections-3.2.2.jar" size="588337" download="eager" />

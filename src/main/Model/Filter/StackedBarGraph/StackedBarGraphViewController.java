@@ -62,8 +62,6 @@ public class StackedBarGraphViewController extends AbstractController {
 		}
 
 
-
-
 		int cntOut = 0;
 		double outcomeAccumulated = 0.0;
 
