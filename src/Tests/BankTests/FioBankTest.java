@@ -1,7 +1,7 @@
 package BankTests;
 
 import main.Model.Bank.FioBank;
-import main.Model.CategoryParser;
+import main.InternalUtils.CategoryParser;
 import main.Model.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

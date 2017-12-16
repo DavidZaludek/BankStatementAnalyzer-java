@@ -2,7 +2,7 @@ package main.Model.Bank;
 
 import com.opencsv.CSVReader;
 import main.InternalUtils.Enums.TransactionTypeEnum;
-import main.Model.CategoryParser;
+import main.InternalUtils.CategoryParser;
 import main.Model.File;
 import main.Model.Record;
 import main.Model.User;

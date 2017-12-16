@@ -2,6 +2,7 @@ package main.View.FxmlFiles.SubViews;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,6 +49,7 @@ public class FilesSubViewController extends AbstractController {
 			FXCollections.observableArrayList();
 
 	private File currentFile;
+	private TableFile selectedTableFile;
 
 	@FXML
 	protected void initialize() {
@@ -71,6 +73,12 @@ public class FilesSubViewController extends AbstractController {
 
 		ArrayList<String> tmpBanks = BankFactory.getBankNames();
 		BankSelector.getItems().setAll(FXCollections.observableArrayList(tmpBanks));
+
+		FileTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if (newSelection != null) {
+				selectedTableFile = FileTable.getSelectionModel().getSelectedItem();
+			}
+		});
 
 	}
 
@@ -102,6 +110,11 @@ public class FilesSubViewController extends AbstractController {
 		App.Update();
 	}
 
+	public void RemoveFileButtonOnAction(ActionEvent actionEvent) {
+		if (selectedTableFile!=null)
+			App.actionHandler.RemoveFile(selectedTableFile.getFile());
+	}
+
 	@Override
 	public void setViewData(ViewDataHandler viewData) {
 
@@ -118,4 +131,5 @@ public class FilesSubViewController extends AbstractController {
 		FileTable.setItems(FXCollections.observableArrayList(tmpTableFiles));
 		FileTable.refresh();
 	}
+
 }

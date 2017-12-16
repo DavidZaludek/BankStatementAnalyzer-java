@@ -2,6 +2,7 @@ package main.Model.Filter.AreaGraph;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import main.InternalUtils.Enums.GraphTypeEnum;
 import main.Model.Filter.AbstractFilter;
 import main.View.FxmlFiles.AbstractController;
 import main.View.ViewDataHandler;
@@ -14,8 +15,8 @@ public class AreaFilter extends AbstractFilter {
 
 	public AreaFilter() throws IOException {
 
-		super("Area graph");
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/Model/Filter/BarGraph/BarGraphView.fxml"));
+		super(GraphTypeEnum.AreaChart.toString());
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/Model/Filter/AreaGraph/AreaGraphView.fxml"));
 		pane = loader.load();
 		controller = loader.getController();
 	}
@@ -27,6 +28,6 @@ public class AreaFilter extends AbstractFilter {
 
 	@Override
 	public void setViewData(ViewDataHandler view) {
-
+		controller.setViewData(view);
 	}
 }

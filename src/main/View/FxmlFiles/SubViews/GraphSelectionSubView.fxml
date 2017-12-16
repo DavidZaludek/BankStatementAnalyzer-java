@@ -41,7 +41,7 @@
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="AreaButton" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AreaButtonOnAction" text="Area graph" visible="false">
+                  <Button fx:id="AreaButton" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AreaButtonOnAction" text="Area graph">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>

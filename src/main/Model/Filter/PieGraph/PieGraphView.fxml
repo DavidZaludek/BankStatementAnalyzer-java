@@ -78,6 +78,16 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </VBox.margin>
                         </RadioButton>
+                            <RadioButton fx:id="MonthRadio" mnemonicParsing="false" text="Month of year">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                </VBox.margin>
+                            </RadioButton>
+                            <RadioButton fx:id="WeekDaysRadio" mnemonicParsing="false" text="Week days ">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                </VBox.margin>
+                            </RadioButton>
 
                         </children>
                     </VBox>

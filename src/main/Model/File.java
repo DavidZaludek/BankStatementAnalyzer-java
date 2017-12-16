@@ -82,7 +82,11 @@ public class File {
 	}
 
 	public TableFile getTableFile(){
-		return new TableFile(getGUID(),getFileName(), getFromDateTime(), getToDateTime(), getBankName(), String.valueOf(getRecords().size()));
+		return new TableFile(this,getGUID(),getFileName(), getFromDateTime(), getToDateTime(), getBankName(), String.valueOf(getRecords().size()));
+	}
+
+	public void removeRecord(Record record){
+		records.remove(record);
 	}
 }
 

@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import main.InternalUtils.Enums.GranularityEnum;
@@ -249,7 +246,6 @@ public class LineGraphViewController extends AbstractController {
 			case DAY:
 				LineChart.setVerticalGridLinesVisible(false);
 				xAxis.setLabel("Days");
-				xAxis.setTickLabelsVisible(true);
 				break;
 			case WEEK:
 				xAxis.setLabel("Weeks");
@@ -265,13 +261,19 @@ public class LineGraphViewController extends AbstractController {
 		for (XYChart.Series<String, Number> series : LineChart.getData()) {
 
 			if (series.getName().equals("Accumulated income") || series.getName().equals("Accumulated spending") || series.getName().equals("Account balance")) //if Name is "blue" then continue
+			{
+				for (XYChart.Data<String, Number> d : series.getData()) {
+					Tooltip.install(d.getNode(), new Tooltip(d.getXValue().toString() + "\n" + "Value : " + String.format("%.2f",d.getYValue()) + " " + currency));
+				}
 				continue;
+			}
 
 			for (XYChart.Data<String, Number> data : series.getData()) {
 				StackPane stackPane = (StackPane) data.getNode();
 				stackPane.setVisible(false);
 			}
 		}
+
 	}
 
 	public void initialize(){
@@ -288,6 +290,7 @@ public class LineGraphViewController extends AbstractController {
 
 				return "Year";
 			}
+
 
 			@Override
 			public Double fromString(String s) {

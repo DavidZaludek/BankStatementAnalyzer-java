@@ -3,18 +3,19 @@ package main.Model.Filter.PieGraph;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import main.InternalUtils.MapUtil;
 import main.Model.Record;
 import main.View.FxmlFiles.AbstractController;
 import main.View.ViewDataHandler;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class PieGraphViewController extends AbstractController {
@@ -28,6 +29,8 @@ public class PieGraphViewController extends AbstractController {
 	public RadioButton CategoryRadio;
 	public RadioButton CompanyRadio;
 	public RadioButton BankRadio;
+	public RadioButton MonthRadio;
+	public RadioButton WeekDaysRadio;
 
 	@FXML
 	private PieChart IncomeChart;
@@ -95,6 +98,21 @@ public class PieGraphViewController extends AbstractController {
 						AddToHashMap(tmpRecord.getBankName(),tmpRecord.getAmount(),spendingData);
 					}
 				}
+				if (MonthRadio.isSelected()){
+					if (tmpRecord.getAmount() > 0){
+						AddToHashMap(tmpRecord.getDateTime().format(DateTimeFormatter.ofPattern("MMMM")),tmpRecord.getAmount(),incomeData);
+					}else{
+						AddToHashMap(tmpRecord.getDateTime().format(DateTimeFormatter.ofPattern("MMMM")),tmpRecord.getAmount(),spendingData);
+					}
+				}
+				if (WeekDaysRadio.isSelected()){
+					if (tmpRecord.getAmount() > 0){
+						AddToHashMap(tmpRecord.getDateTime().format(DateTimeFormatter.ofPattern("cccc")),tmpRecord.getAmount(),incomeData);
+					}else{
+						AddToHashMap(tmpRecord.getDateTime().format(DateTimeFormatter.ofPattern("cccc")),tmpRecord.getAmount(),spendingData);
+					}
+				}
+
 			}
 		}
 
@@ -148,25 +166,13 @@ public class PieGraphViewController extends AbstractController {
 		CategoryRadio.setToggleGroup(toggleGroup);
 		CompanyRadio.setToggleGroup(toggleGroup);
 		BankRadio.setToggleGroup(toggleGroup);
+		MonthRadio.setToggleGroup(toggleGroup);
+		WeekDaysRadio.setToggleGroup(toggleGroup);
 
 		CategoryRadio.setSelected(true);
 
 		toggleGroup.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> filterData());
 
-		final Label caption = new Label("");
-		caption.setTextFill(Color.DARKORANGE);
-		caption.setStyle("-fx-font: 24 arial;");
-
-		for (final PieChart.Data data : SpendingChart.getData()) {
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-					new EventHandler<MouseEvent>() {
-						@Override public void handle(MouseEvent e) {
-							caption.setTranslateX(e.getSceneX());
-							caption.setTranslateY(e.getSceneY());
-							caption.setText(String.valueOf(data.getPieValue()));
-						}
-					});
-		}
 	}
 
 	@Override

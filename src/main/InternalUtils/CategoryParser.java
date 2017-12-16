@@ -1,4 +1,4 @@
-package main.Model;
+package main.InternalUtils;
 
 import main.InternalUtils.Enums.CategoryEnum;
 import org.json.JSONObject;

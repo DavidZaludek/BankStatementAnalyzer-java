@@ -4,6 +4,7 @@ import javafx.scene.layout.AnchorPane;
 import main.Model.Filter.AbstractFilter;
 import main.Model.Filter.FilterFactory;
 import main.View.Enums.SubViewEnum;
+import main.View.Enums.ViewEnum;
 import main.View.FxmlFiles.AbstractController;
 import main.View.ViewDataHandler;
 
@@ -15,19 +16,18 @@ public class GraphSubViewController extends AbstractController {
 
 	@Override
 	public void setViewData(ViewDataHandler viewData) {
-		if (viewData.getSubViewEnum() == SubViewEnum.GraphView) {
-			if (viewData.getGraphSelection()!=null) {
-				selectedFilter = FilterFactory.getFilterByName(viewData.getGraphSelection());
-				selectedFilter.setViewData(viewData);
 
-				subScene.getChildren().setAll(selectedFilter.getPane());
+		if (viewData.getViewEnum() == ViewEnum.HomePageView && viewData.getSubViewEnum() == SubViewEnum.GraphView && viewData.getGraphSelection() != null) {
+			selectedFilter = FilterFactory.getFilterByName(viewData.getGraphSelection());
+			selectedFilter.setViewData(viewData);
 
-				AnchorPane.setTopAnchor(selectedFilter.getPane(),0.0);
-				AnchorPane.setBottomAnchor(selectedFilter.getPane(),0.0);
-				AnchorPane.setLeftAnchor(selectedFilter.getPane(),0.0);
-				AnchorPane.setRightAnchor(selectedFilter.getPane(),0.0);
+			subScene.getChildren().setAll(selectedFilter.getPane());
 
-			}
+			AnchorPane.setTopAnchor(selectedFilter.getPane(), 0.0);
+			AnchorPane.setBottomAnchor(selectedFilter.getPane(), 0.0);
+			AnchorPane.setLeftAnchor(selectedFilter.getPane(), 0.0);
+			AnchorPane.setRightAnchor(selectedFilter.getPane(), 0.0);
+
 		}
 
 	}

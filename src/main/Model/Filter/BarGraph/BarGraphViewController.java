@@ -8,6 +8,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tooltip;
 import javafx.util.StringConverter;
 import main.InternalUtils.Enums.GranularityEnum;
 import main.Model.Record;
@@ -155,6 +156,12 @@ public class BarGraphViewController extends AbstractController {
 		}
 
 		BarChart.getData().setAll(outcomeSeries);
+
+		for (XYChart.Series<String, Number> series : BarChart.getData()) {
+			for (XYChart.Data<String, Number> d : series.getData()) {
+				Tooltip.install(d.getNode(), new Tooltip(d.getXValue().toString() + "\n" + "Value : " + String.format("%.2f", d.getYValue()) + " " + currency));
+			}
+		}
 	}
 
 	@Override

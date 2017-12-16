@@ -112,7 +112,6 @@ public class User {
 	}
 
 	public HashSet<String> getCategorySet() {
-
 		return categorySet;
 	}
 

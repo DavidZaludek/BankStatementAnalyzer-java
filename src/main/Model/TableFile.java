@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
 
 public class TableFile {
+	private final File file;
 	private final SimpleStringProperty id;
 	private final SimpleStringProperty fileName;
 	private final LocalDate dateFrom;
@@ -12,7 +13,9 @@ public class TableFile {
 	private final SimpleStringProperty bankName;
 	private final SimpleStringProperty numOfRecords;
 
-	public TableFile(String id, String fileName, LocalDate dateFrom, LocalDate dateTo, String bankName, String numOfRecords) {
+	public TableFile(File file, String id, String fileName, LocalDate dateFrom, LocalDate dateTo, String bankName, String numOfRecords) {
+
+		this.file = file;
 		this.id = new SimpleStringProperty(id);
 		this.fileName = new SimpleStringProperty(fileName);
 		this.dateFrom = dateFrom;
@@ -74,4 +77,8 @@ public class TableFile {
 		return dateTo;
 	}
 
+	public File getFile() {
+
+		return file;
+	}
 }

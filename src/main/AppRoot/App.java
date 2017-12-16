@@ -2,7 +2,7 @@ package main.AppRoot;
 
 import main.Actions.ActionHandler;
 import main.DBUtils.Database;
-import main.Model.CategoryParser;
+import main.InternalUtils.CategoryParser;
 import main.Model.Filter.FilterFactory;
 import main.Model.UserDataHandler;
 import main.View.Enums.ViewEnum;

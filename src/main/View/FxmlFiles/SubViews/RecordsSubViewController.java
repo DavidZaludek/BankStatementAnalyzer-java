@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.AppRoot.App;
 import main.InternalUtils.Enums.CategoryEnum;
-import main.Model.CategoryParser;
+import main.InternalUtils.CategoryParser;
 import main.Model.Record;
 import main.Model.TableRecord;
 import main.View.Enums.SubViewEnum;
@@ -17,23 +17,33 @@ import main.View.FxmlFiles.AbstractController;
 import main.View.Utils.LocalDateCellFactory;
 import main.View.Utils.LocalDateComparator;
 import main.View.ViewDataHandler;
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class RecordsSubViewController extends AbstractController {
 	public DatePicker FromDatePicker;
 	public DatePicker ToDatePicker;
+
 	public ChoiceBox<String> CurrencySelection;
 	public ChoiceBox<String> CategorySelection;
 	public ChoiceBox<String> TransactionTypeSelection;
 	public ChoiceBox<String> CompanySelection;
+
 	public ChoiceBox<String> SelectRecordCategory;
-	public Button SetCategoryButton;
 	public TextArea SelectedRecordText;
+	public Button SetCategoryButton;
 	public Button RemoveRecordButton;
+
+	public Label AvgLabel;
+	public Label SumLabel;
+	public Label MinLabel;
+	public Label MaxLabel;
+	public Label CountLabel;
 
 	@FXML
 	TableView<TableRecord> recordTable;
@@ -164,6 +174,8 @@ public class RecordsSubViewController extends AbstractController {
 			return;
 		}
 
+		SummaryStatistics tmpStatistics = new SummaryStatistics();
+
 		SelectRecordCategory.getItems().setAll(FXCollections.observableArrayList(Arrays.asList(CategoryParser.getCategoriesAsString())));
 
 		HashSet<TableRecord> tmpTableFiles = new HashSet<>();
@@ -188,6 +200,8 @@ public class RecordsSubViewController extends AbstractController {
 			if (tmpRecord.getDateTime().isBefore(FromDatePicker.getValue()) || tmpRecord.getDateTime().isAfter(ToDatePicker.getValue())){
 				continue;
 			}
+
+			tmpStatistics.addValue(records.get(i).getAmount());
 
 			tmpTableFiles.add(records.get(i).getTableRecord());
 		}
@@ -214,8 +228,13 @@ public class RecordsSubViewController extends AbstractController {
 			sortcolumn.setSortType(st);
 			sortcolumn.setSortable(true); // This performs a sort
 		}
-	}
 
+		CountLabel.setText("Count: " + tmpTableFiles.size());
+		SumLabel.setText("Sum: " + String.format( "%.2f", tmpStatistics.getSum()));
+		MinLabel.setText("Min: " + String.format( "%.2f", tmpStatistics.getMin()));
+		MaxLabel.setText("Max: " + String.format( "%.2f", tmpStatistics.getMax()));
+		AvgLabel.setText("Avg: " + String.format( "%.2f", tmpStatistics.getMean()));
+	}
 
 	@Override
 	public void setViewData(ViewDataHandler viewData) {
@@ -229,8 +248,18 @@ public class RecordsSubViewController extends AbstractController {
 		if (viewData.getSubViewEnum() == SubViewEnum.RecordsView && viewData.getViewEnum() == ViewEnum.HomePageView){
 			records.addAll(viewData.getUser().getRecords());
 
-			if (records.size() == 0)
+			if (records.size() == 0) {
+				recordTable.setItems(FXCollections.observableArrayList());
+				recordTable.refresh();
+				CountLabel.setText("Count: " + 0);
+				SumLabel.setText("Sum: " + 0);
+				MinLabel.setText("Min: " + 0);
+				MaxLabel.setText("Max: " + 0);
+				AvgLabel.setText("Avg: " + 0);
 				return;
+			}
+
+			Collections.sort(records,Record.getDateTimeComparator());
 
 			FromDatePicker.setValue(records.get(0).getDateTime());
 			ToDatePicker.setValue(records.get(records.size()-1).getDateTime());

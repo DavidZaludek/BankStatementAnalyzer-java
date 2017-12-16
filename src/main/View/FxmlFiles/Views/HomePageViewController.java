@@ -1,5 +1,7 @@
 package main.View.FxmlFiles.Views;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.AppRoot.App;
 import main.View.Enums.SubViewEnum;
 import main.View.Enums.ViewEnum;
@@ -19,6 +21,13 @@ public class HomePageViewController extends AbstractController {
 	public Button GraphsViewButton;
 
 	public AnchorPane subScene;
+
+	public void initialize(){
+		Image HomeImage = new Image("Resources/Images/home.png", 20, 20, false, false);
+
+		HomePageButton.setText("");
+		HomePageButton.setGraphic(new ImageView(HomeImage));
+	}
 
 	public void LogOutButtonOnAction(){
 		App.actionHandler.LogOut();

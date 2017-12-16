@@ -152,4 +152,6 @@ public class Record{
 		result = 31 * result + getBankName().hashCode();
 		return result;
 	}
+
+
 }

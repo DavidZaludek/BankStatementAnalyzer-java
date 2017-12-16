@@ -1,5 +1,15 @@
 package main.View.FxmlFiles.Views;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.paint.Paint;
 import main.AppRoot.App;
 import main.DBUtils.Exceptions.UserExistsException;
 import main.DBUtils.Exceptions.UserNotFoundException;
@@ -8,11 +18,6 @@ import main.View.Enums.SubViewEnum;
 import main.View.Enums.ViewEnum;
 import main.View.FxmlFiles.AbstractController;
 import main.View.ViewDataHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.paint.Paint;
 
 import java.sql.SQLException;
 
@@ -24,6 +29,14 @@ public class LoginPageViewController extends AbstractController {
 	public Button CreateAccountButton;
 	public Button ContinueAsGuestButton;
 	public Label ErrorLabel;
+
+	public void initialize(){
+		BackgroundImage myBI= new BackgroundImage(new Image("Resources/Images/bar-chart.png",32,32,false,true),
+				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+				BackgroundSize.DEFAULT);
+
+
+	}
 
 	public void LoginButtonOnAction(){
 		String username = UsernameField.getText();

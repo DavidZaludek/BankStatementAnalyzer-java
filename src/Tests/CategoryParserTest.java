@@ -1,5 +1,5 @@
 import main.InternalUtils.Enums.CategoryEnum;
-import main.Model.CategoryParser;
+import main.InternalUtils.CategoryParser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
