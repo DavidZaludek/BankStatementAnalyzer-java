@@ -18,6 +18,7 @@ public final class App extends Application {
 
 	private static String CATEGORY_MAP_FILE_PATH = "Resources/CategoryMap.json";
 	private static String USERS_DATABASE_PATH = "Database/UsersData.db";
+	private static String CSS_FILE_PATH = "Resources/css/style.css";
 
     public static Database usersDatabase;
     public static ViewDataHandler viewData;
@@ -60,6 +61,7 @@ public final class App extends Application {
         rootStage = primaryStage;
 
         primaryStage.setScene(App.scenesHandler.Scenes.get(ViewEnum.LoginPageView));
+        primaryStage.getScene().getStylesheets().setAll(CSS_FILE_PATH);
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(900);
         primaryStage.setTitle("Bank statement analyzer");

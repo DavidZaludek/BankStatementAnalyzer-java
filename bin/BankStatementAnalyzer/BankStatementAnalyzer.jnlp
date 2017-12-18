@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BankStatementAnalyzer.jar" size="1215560" download="eager" />
+    <jar href="BankStatementAnalyzer.jar" size="432524" download="eager" />
     <jar href="bin/BankStatementAnalyzer/BankStatementAnalyzer.jar" size="902947" download="eager" />
     <jar href="bin/BankStatementAnalyzer/lib/commons-beanutils-1.9.3.jar" size="246174" download="eager" />
     <jar href="bin/BankStatementAnalyzer/lib/commons-collections-3.2.2.jar" size="588337" download="eager" />
@@ -35,10 +35,8 @@
     <jar href="lib/commons-text-1.1.jar" size="129145" download="eager" />
     <jar href="lib/json-20171018-javadoc.jar" size="155545" download="eager" />
     <jar href="lib/json-20171018.jar" size="61749" download="eager" />
-    <jar href="lib/junit-jupiter-api-5.0.0-RC2.jar" size="74574" download="eager" />
     <jar href="lib/opencsv-4.1-javadoc.jar" size="385541" download="eager" />
     <jar href="lib/opencsv-4.1.jar" size="105568" download="eager" />
-    <jar href="lib/opentest4j-1.0.0-RC1.jar" size="6591" download="eager" />
     <jar href="lib/sqlite-jdbc-3.21.0.jar" size="6672489" download="eager" />
   </resources>
   <jfx:javafx-desc  width="600" height="400" main-class="main.AppRoot.App"  name="BankStatementAnalyzer" />

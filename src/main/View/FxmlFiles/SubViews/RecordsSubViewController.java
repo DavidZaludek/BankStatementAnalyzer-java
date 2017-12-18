@@ -174,30 +174,36 @@ public class RecordsSubViewController extends AbstractController {
 			return;
 		}
 
+		String company = CompanySelection.getValue();
+		String currencySelection = CurrencySelection.getValue();
+		String transactionType = TransactionTypeSelection.getValue();
+		String category = CategorySelection.getValue();
+		LocalDate from  = FromDatePicker.getValue();
+		LocalDate to = ToDatePicker.getValue();
+
 		SummaryStatistics tmpStatistics = new SummaryStatistics();
 
 		SelectRecordCategory.getItems().setAll(FXCollections.observableArrayList(Arrays.asList(CategoryParser.getCategoriesAsString())));
 
 		HashSet<TableRecord> tmpTableFiles = new HashSet<>();
 
+
 		for (int i = 0; i < records.size(); i++) {
 			Record tmpRecord = records.get(i);
-			if (!(tmpRecord.getCurrency().equals( CurrencySelection.getValue()) || CurrencySelection.getValue().equals( "ALL"))){
+			if (!(tmpRecord.getCurrency().equals(currencySelection ) || currencySelection.equals( "ALL"))){
 				continue;
 			}
 
-			String company = CompanySelection.getValue();
-
-			if (!(tmpRecord.getCompanyName().equals(CompanySelection.getValue()) || company.equals( "ALL"))){
+			if (!(tmpRecord.getCompanyName().equals(company) || company.equals( "ALL"))){
 				continue;
 			}
-			if (!(tmpRecord.getTransactionType().toString().equals(TransactionTypeSelection.getValue()) || TransactionTypeSelection.getValue().equals( "ALL"))){
+			if (!(tmpRecord.getTransactionType().toString().equals(transactionType) || transactionType.equals( "ALL"))){
 				continue;
 			}
-			if (!(tmpRecord.getCategory().toString().equals(CategorySelection.getValue()) || CategorySelection.getValue().equals( "ALL"))){
+			if (!(tmpRecord.getCategory().toString().equals(category) || category.equals( "ALL"))){
 				continue;
 			}
-			if (tmpRecord.getDateTime().isBefore(FromDatePicker.getValue()) || tmpRecord.getDateTime().isAfter(ToDatePicker.getValue())){
+			if (tmpRecord.getDateTime().isBefore(from) || tmpRecord.getDateTime().isAfter(to)){
 				continue;
 			}
 

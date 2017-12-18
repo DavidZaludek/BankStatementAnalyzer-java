@@ -140,9 +140,8 @@ public class PieGraphViewController extends AbstractController {
 			spendingObservableData.add(new PieChart.Data(tmpKey, spendingData.get(tmpKey)));
 		}
 
-		IncomeChart.setData(incomeObservableData);
 		SpendingChart.setData(spendingObservableData);
-
+		IncomeChart.setData(incomeObservableData);
 	}
 
 	public void AddToHashMap(String key,Double value,HashMap<String,Double> spendingData) {

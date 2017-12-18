@@ -5,23 +5,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Tooltip;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import main.InternalUtils.Enums.GranularityEnum;
 import main.Model.Record;
 import main.View.FxmlFiles.AbstractController;
 import main.View.ViewDataHandler;
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import java.time.LocalDate;
 import java.util.*;
+
+import static main.InternalUtils.MathUtils.calcMeanCI;
 
 public class StackedBarGraphViewController extends AbstractController {
 	public DatePicker FromDatePicker;
 	public DatePicker ToDatePicker;
 	public ChoiceBox<String> CurrencySelection;
+	public CheckBox CIButton;
 	public Slider GranularitySlider;
 	public StackedBarChart<String,Number> StackedBarChart;
 
@@ -47,6 +49,8 @@ public class StackedBarGraphViewController extends AbstractController {
 		LocalDate to = ToDatePicker.getValue();
 		String currency = CurrencySelection.getValue();
 
+		SummaryStatistics stats = new SummaryStatistics();
+
 		ArrayList<Record> tmpRecordsOutcome = new ArrayList<>();
 
 		XYChart.Series outcomeSeries = new XYChart.Series();
@@ -60,7 +64,6 @@ public class StackedBarGraphViewController extends AbstractController {
 				}
 			}
 		}
-
 
 		int cntOut = 0;
 		double outcomeAccumulated = 0.0;
@@ -97,26 +100,69 @@ public class StackedBarGraphViewController extends AbstractController {
 
 		String tmpKey = null;
 
+		Stack<Data<String,Number>> values = new Stack<>();
+
 		while (itt.hasNext()){
 			tmpKey = itt.next();
 
 			if (outcomeMap.get(tmpKey) < 0)
 				continue;
 
-			outcomeSeries.getData().add(new XYChart.Data<>(tmpKey, outcomeMap.get(tmpKey)));
+			if (outcomeMap.get(tmpKey) != 0)
+				stats.addValue(outcomeMap.get(tmpKey));
+
+			if (CIButton.isSelected()){
+				values.push(new Data<>(tmpKey, outcomeMap.get(tmpKey)));
+			}
+
+			outcomeSeries.getData().add(new Data<>(tmpKey, outcomeMap.get(tmpKey)));
 		}
+
+		double ci = calcMeanCI(stats, 0.95);
 
 		StackedBarChart.getData().setAll(outcomeSeries);
 
-		for (XYChart.Series<String, Number> series : StackedBarChart.getData()) {
-			for (XYChart.Data<String, Number> d : series.getData()) {
-				Tooltip.install(d.getNode(), new Tooltip(d.getXValue().toString() + "\n" + "Value : " + String.format("%.2f", d.getYValue()) + " " + currency));
+		XYChart.Series confidenceIntervalSeriesFill = new XYChart.Series();
+		XYChart.Series confidenceIntervalSeries = new XYChart.Series();
+		confidenceIntervalSeries.setName("95% confidence interval");
+		confidenceIntervalSeriesFill.setName("");
+
+		if (outcomeMap.size() > 10 && CIButton.isSelected()){
+
+			while (!values.empty()){
+				Data<String,Number> value = values.pop();
+
+				if (value.getYValue().doubleValue() == 0){
+					confidenceIntervalSeriesFill.getData().addAll(new Data<>(value.getXValue(),stats.getMean() - ci));
+					confidenceIntervalSeries.getData().addAll(new Data<>(value.getXValue(),ci * 2));
+				}
+
+				if (value.getYValue().doubleValue() != 0)
+					break;
 			}
+
+			StackedBarChart.getData().addAll(confidenceIntervalSeriesFill,confidenceIntervalSeries);
+		}
+
+		for (XYChart.Series<String, Number> series : StackedBarChart.getData()) {
+
+			if (series.getName().equals("Spending during time period"))
+				for (Data<String, Number> d : series.getData()) {
+					Tooltip.install(d.getNode(), new Tooltip(d.getXValue().toString() + "\n" + "Value : " + String.format("%.2f", d.getYValue()) + " " + currency));
+				}
+
+			if (series.getName().equals("95% confidence interval"))
+				for (Data<String, Number> d : series.getData()) {
+					Tooltip.install(d.getNode(), new Tooltip(d.getXValue().toString() + "\n" + "95% confidence interval : "
+							+ String.format("%.2f", stats.getMean() - d.getYValue().doubleValue() /2 ) + " " + currency + " - "
+							+ String.format("%.2f", stats.getMean() + d.getYValue().doubleValue() /2 ) + " " + currency ));
+
+				}
 		}
 
 	}
 
-	public void initialize(){
+	public void initialize() {
 		records = new ArrayList<>();
 		currencySet = new HashSet<>();
 
@@ -182,6 +228,10 @@ public class StackedBarGraphViewController extends AbstractController {
 		CurrencySelection.setItems(FXCollections.observableArrayList(currencySet));
 		CurrencySelection.setValue(currencySet.iterator().next());
 
+		filterData();
+	}
+
+	public void CIButtonOnAction(ActionEvent actionEvent) {
 		filterData();
 	}
 }

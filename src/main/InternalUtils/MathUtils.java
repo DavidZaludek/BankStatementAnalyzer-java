@@ -6,7 +6,7 @@ import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 public class MathUtils {
 
-	private static double calcMeanCI(SummaryStatistics stats, double level) {
+	public static double calcMeanCI(SummaryStatistics stats, double level) {
 		try {
 			TDistribution tDist = new TDistribution(stats.getN() - 1);
 			double critVal = tDist.inverseCumulativeProbability(1.0 - (1 - level) / 2);
