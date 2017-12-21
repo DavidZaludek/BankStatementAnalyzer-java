@@ -22,8 +22,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <PieChart fx:id="SpendingChart" labelLineLength="40.0" title="Spending" />
-                        <PieChart fx:id="IncomeChart" labelLineLength="40.0" title="Income" GridPane.rowIndex="1" />
+                        <PieChart fx:id="SpendingChart" labelLineLength="40.0" title="Spending" GridPane.rowIndex="0"/>
+
                      </children>
                   </GridPane>
                </children>

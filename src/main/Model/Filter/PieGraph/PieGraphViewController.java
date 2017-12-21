@@ -151,7 +151,7 @@ public class PieGraphViewController extends AbstractController {
 		if (spendingData.containsKey(key)) {
 			tmpAmount += spendingData.get(key);
 		}
-		tmpAmount += value;
+		tmpAmount += -1 * value;
 		spendingData.put(key, tmpAmount);
 	}
 
@@ -167,7 +167,6 @@ public class PieGraphViewController extends AbstractController {
 		BankRadio.setToggleGroup(toggleGroup);
 		MonthRadio.setToggleGroup(toggleGroup);
 		WeekDaysRadio.setToggleGroup(toggleGroup);
-
 		CategoryRadio.setSelected(true);
 
 		toggleGroup.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> filterData());
